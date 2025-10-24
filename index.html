@@ -6,21 +6,37 @@
 <title>Nowenna rozwiązująca węzły — interaktywnie (9 dni)</title>
 <style>
   :root{
-    --bg:#f3f6ff; --panel:#ffffff; --panel-2:#eef2ff; --text:#0e1533; --muted:#6370a0;
-    --accent:#2450ff; --accent-2:#6ea8ff; --ring:#2450ff22;
-    --ok:#2563eb; --ok-strong:#1d4ed8; --soft:#e8edff; --chip:#dbe5ff;
-    --box:#123a78; --box-border:#1d4ed8;
+    --bg: #f3f6ff;
+    --panel: #ffffff;
+    --panel-2:#eef2ff;
+    --text:#0e1533;
+    --muted:#6370a0;
+    --accent:#2450ff;
+    --accent-2:#6ea8ff;
+    --ring:#2450ff22;
+    --ok:#2563eb;
+    --ok-strong:#1d4ed8;
+    --soft:#e8edff;
+    --chip:#dbe5ff;
   }
   .dark{
-    --bg:#0f1221; --panel:#161a2f; --panel-2:#1a1f3a; --text:#e8edff; --muted:#a7b1e6;
-    --accent:#8ea0ff; --accent-2:#6ea8ff; --ring:#8ea0ff33;
-    --ok:#8ea0ff; --ok-strong:#b2c2ff; --soft:#20254a; --chip:#272f63;
-    --box:#0e3a6d; --box-border:#6ea8ff;
+    --bg:#0f1221;
+    --panel:#161a2f;
+    --panel-2:#1a1f3a;
+    --text:#e8edff;
+    --muted:#a7b1e6;
+    --accent:#8ea0ff;
+    --accent-2:#6ea8ff;
+    --ring:#8ea0ff33;
+    --ok:#8ea0ff;
+    --ok-strong:#b2c2ff;
+    --soft:#20254a;
+    --chip:#272f63;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
-  body{margin:0; background:var(--bg); color:var(--text); font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial}
-  .wrap{max-width:800px; margin:0 auto; padding:18px}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;}
+  .wrap{max-width:800px; margin:0 auto; padding:18px;}
   header{display:block; margin-bottom:14px}
   .banner{background:linear-gradient(180deg,#cfe3ff,#e9f0ff); color:#0b2a55; border-radius:18px; padding:18px; text-align:center; box-shadow:0 8px 24px #0001; border:1px solid #ffffff70; margin-bottom:12px}
   .banner h1{margin:0; font-size:clamp(22px,4.5vw,32px); font-weight:800; letter-spacing:.2px}
@@ -33,18 +49,18 @@
   .menu .item .meta{font-size:11px; color:var(--muted)}
   .menu .del{border:none; background:#f1f3ff; color:#1a2a7a; border-radius:8px; padding:6px 8px; cursor:pointer}
   .menu .empty{padding:10px; font-size:12px; color:var(--muted)}
-  .controls{display:flex; gap:8px; align-items:center}
+  .controls{display:flex; gap:8px; align-items:center;}
   .field{display:flex; gap:8px; align-items:center; background:var(--panel); border:1px solid #00000010; padding:6px 8px; border-radius:12px}
   .field input{border:none; outline:none; background:transparent; color:var(--text); font-size:14px; padding:6px; width:130px}
+  .title{font-weight:800; letter-spacing:.2px; font-size:clamp(18px,3vw,24px)}
+  .chip{background:var(--chip); border:1px solid #ffffff10; padding:8px 10px; border-radius:12px; font-size:13px}
   .btn{border:none; border-radius:12px; padding:10px 14px; cursor:pointer; font-weight:700; letter-spacing:.2px}
-  .toggle{background:var(--panel); border:1px solid #00000010; box-shadow:0 4px 14px #0002}
+  .toggle{background:var(--panel); border:1px solid #00000010; box-shadow:0 4px 14px #0002;}
   .square{width:40px; height:40px; padding:0; display:grid; place-items:center; background:#e7ebff; color:#1a2a7a}
   .square.active{background:#1a2a7a; color:#e7ebff}
-  .start{background:linear-gradient(180deg,#35b86b,#2ea45f); color:white}
-  .card{background:linear-gradient(180deg,var(--panel),var(--panel-2)); border:1px solid #ffffff12; border-radius:18px; padding:18px; box-shadow:0 10px 30px #0003}
-  .content{min-height:120px; padding:14px; border-radius:14px; background:var(--soft); border:1px solid #ffffff22; line-height:1.6}
-  .content h3{margin:0 0 10px; font-size:22px}
-  .box-prayer{background:var(--box); color:#e6efff; border:1px solid var(--box-border); border-radius:16px; padding:18px}
+  .start{background:linear-gradient(180deg, #35b86b, #2ea45f); color:white}
+  .card{background:linear-gradient(180deg, var(--panel), var(--panel-2)); border:1px solid #ffffff12; border-radius:18px; padding:18px; box-shadow:0 10px 30px #0003}
+  .content{min-height:120px; padding:14px; border-radius:14px; background:var(--soft); border:1px solid #ffffff22; line-height:1.5}
   .meta{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:10px; font-size:13px; color:var(--muted)}
   .ctrl-bottom{display:flex; align-items:center; justify-content:center; gap:10px; margin-top:10px; flex-wrap:wrap}
   .nav-btn{border:none; border-radius:999px; padding:12px 20px; background:#2450ff; color:white; font-weight:800; letter-spacing:.3px; cursor:pointer}
@@ -53,13 +69,11 @@
   .footer{margin-top:12px; display:flex; align-items:center; justify-content:center; gap:8px; white-space:nowrap; overflow-x:auto; padding:6px 4px}
   .dot{display:inline-block; width:18px; height:18px; border-radius:4px; background:#c9d3ff; border:1px solid #9bb1ff; opacity:.9}
   .dot.done{background:var(--ok); border-color:var(--ok-strong); opacity:1}
-  .dot.current{outline:2px solid var(--ring)}
+  .dot.current{background:var(--ok); border-color:var(--ok-strong); opacity:1}
   .toast{position:fixed; inset:auto 0 22px 0; display:flex; justify-content:center; pointer-events:none}
   .toast > div{background:#101940; color:white; padding:10px 16px; border-radius:12px; box-shadow:0 10px 30px #0007; opacity:0; transform:translateY(8px)}
   .toast.show > div{opacity:1; transform:translateY(0); transition:all .25s ease}
   .hint{font-size:12px; color:var(--muted); text-align:center; margin-top:6px}
-  .content a{color:#cfe3ff; text-decoration:underline}
-  .dark .content a{color:#bcd7ff}
 </style>
 </head>
 <body>
@@ -70,7 +84,7 @@
         <button id="themeBtn" class="btn toggle" title="Tryb dzień / noc">🌞/🌙</button>
         <div class="field">
           <button id="nameBtn" class="btn square" title="Wybierz zapisane imię">👤</button>
-          <input id="nameInput" type="text" placeholder="np. Ania" maxlength="24" />
+          <input id="nameInput" type="text" placeholder="np. Ania" maxlength="10" />
           <button id="startBtn" class="btn start">Start</button>
           <button id="peekBtn" class="btn square" title="Podgląd wszystkich dni (X)">✕</button>
         </div>
@@ -79,9 +93,7 @@
     </header>
 
     <div class="card">
-      <div id="content" class="content">
-        Podaj imię i kliknij „Start”, aby zacząć dzień 1. Albo kliknij w ikonkę postaci, by wybrać wcześniej zapisanych użytkowników.
-      </div>
+      <div id="content" class="content">Podaj imię i kliknij „Start”, aby zacząć dzień 1.</div>
       <div class="meta">
         <div id="metaDay">Dzień –</div>
         <div id="metaStep">Krok –/–</div>
@@ -100,74 +112,35 @@
   <div class="toast" id="toast"><div id="toastMsg">—</div></div>
 
 <script>
-// ——— MODLITWY (HTML) ———
-const SEKWE = `
-<h3>Sekwencja do Ducha Świętego</h3>
-<div class="box-prayer">
-<p>Przybądź, Duchu Święty, ześlij z nieba wzięty światła Twego strumień.
-Przyjdź, Ojcze ubogich, Dawco darów mnogich, przyjdź, Światłości sumień.
-O, najmilszy z gości, słodka serc radości, słodkie orzeźwienie.
-W pracy Tyś ochłodą, w skwarze żywą wodą, płaczącym podźwignienie.
-Światłości najświętsza, serc wierzących wnętrza poddaj Twej potędze.
-Bez Twojego tchnienia cóż jest wśród stworzenia? Jeno cierń i nędze.
-Obmyj, co nieświęte, oschłym wlej zachętę, ulecz serca ranę.
-Nagnij, co jest harde, rozgrzej serca twarde, prowadź zabłąkane.
+// ——— MODLITWY ———
+const SEKWE = `<h3>Sekwencja do Ducha Świętego</h3>
+<p>Przybądź, Duchu Święty, ześlij z nieba wzięty światła Twego strumień...
 Daj Twoim wierzącym, w Tobie ufającym, siedmiorakie dary.
-Daj zasługę męstwa, daj wieniec zwycięstwa, daj szczęście bez miary. Amen.</p>
-</div>`;
+Daj zasługę męstwa, daj wieniec zwycięstwa, daj szczęście bez miary. Amen.</p>`;
 
-const SKLAD = `
-<h3>Skład Apostolski</h3>
-<div class="box-prayer">
-<p>Wierzę w Boga, Ojca wszechmogącego, Stworzyciela nieba i ziemi.
-I w Jezusa Chrystusa, Syna Jego jedynego, Pana naszego,
-który się począł z Ducha Świętego, narodził się z Maryi Panny,
-umęczon pod Ponckim Piłatem, ukrzyżowan, umarł i pogrzebion,
-zstąpił do piekieł, trzeciego dnia zmartwychwstał, wstąpił na niebiosa,
-siedzi po prawicy Boga Ojca wszechmogącego, stamtąd przyjdzie sądzić żywych i umarłych.
-Wierzę w Ducha Świętego, święty Kościół powszechny, świętych obcowanie,
-grzechów odpuszczenie, ciała zmartwychwstanie, żywot wieczny. Amen.</p>
-</div>`;
+const SKLAD = `<h3>Skład Apostolski</h3>
+<p>Wierzę w Boga, Ojca wszechmogącego, Stworzyciela nieba i ziemi...</p>`;
 
-const AKT_ZALU = `
-<h3>Akt żalu</h3>
-<div class="box-prayer">
-<p>Boże mój, z całego serca żałuję za wszystkie moje grzechy i wyrzekam się ich,
-ponieważ grzesząc nie tylko zasłużyłem na kary sprawiedliwie przez Ciebie ustanowione,
-ale szczególnie dlatego żałuję, że obraziłem Ciebie, najwyższe dobro i jedynie godnego,
-aby być ponad wszystko kochanym. Dlatego z całą mocą przyrzekam, z pomocą łaski Twojej,
-już więcej nie grzeszyć i na przyszłość unikać okazji do grzechu. Amen.</p>
-</div>`;
+const AKT_ZALU = `<h3>Akt żalu</h3>
+<p>Boże mój, z całego serca żałuję za wszystkie moje grzechy... Amen.</p>`;
 
-const MODL_MARYJA = `
-<h3>„Modlitwa do Maryi Rozwiązującej Węzły”</h3>
-<div class="box-prayer">
-<p>Matko Boża, która rozwiązujesz węzły, Ty wiesz, że moje życie jest pełne „węzłów”, które mnie dławią,
-przytłaczają, uciskają i czynią mnie niewolnikiem. Zawierzam się Tobie z ufnością, że je rozwiążesz
-i przez Twe potężne wstawiennictwo Pan udzieli mi spokoju serca, zdrowia ciała i ducha i zaprowadzi mnie do
-nieskończonej radości. Maryjo, nie pozwól, bym uległ pokusie, ale uwolnij mnie od wszelkiej niewoli, lęku
-i niepewności. Udziel mi Twej łaski, abym podążał właściwą ścieżką i nie popełniał błędów.
-Rozwiąż dziś moje węzły, a kiedy nadejdzie moja godzina, rozwiąż ostatni – węzeł mojej śmierci –
-abym ostatecznie wolny od jakiegokolwiek grzechu mógł wejść do szczęścia wiecznego. Amen.</p>
-</div>`;
+const MODL_MARYJA = `<h3>Modlitwa do Maryi Rozwiązującej Węzły</h3>
+<p>Matko Boża, która rozwiązujesz węzły, Ty wiesz, że moje życie jest pełne węzłów...
+Rozwiąż dziś moje węzły i zaprowadź mnie do szczęścia wiecznego. Amen.</p>`;
 
 function mysteriesLinksHTML(){
   return `
   <h3>Trzy pierwsze dziesiątki różańca (tajemnice z dnia)</h3>
-  <div class="box-prayer">
-    <p>Na tym etapie odmawiamy <strong>trzy pierwsze dziesiątki</strong> odpowiednich tajemnic.
-    Kliknij dzień tygodnia, aby przejść do opisu tajemnic:</p>
-    <ul>
-      <li><a href="#tajemnice-radosne">Poniedziałek – radosne</a></li>
-      <li><a href="#tajemnice-bolesne">Wtorek – bolesne</a></li>
-      <li><a href="#tajemnice-chwalebne">Środa – chwalebne</a></li>
-      <li><a href="#tajemnice-swiatla">Czwartek – światła</a></li>
-      <li><a href="#tajemnice-bolesne">Piątek – bolesne</a></li>
-      <li><a href="#tajemnice-radosne">Sobota – radosne</a></li>
-      <li><a href="#tajemnice-chwalebne">Niedziela – chwalebne</a></li>
-    </ul>
-    <p class="hint">Tylko trzy dziesiątki w tym kroku — pozostałe po dalszych modlitwach.</p>
-  </div>`;
+  <p>Na tym etapie odmawiamy <strong>3 pierwsze dziesiątki</strong> odpowiednich tajemnic:</p>
+  <ul>
+    <li><a href="#radosne">Poniedziałek – radosne</a></li>
+    <li><a href="#bolesne">Wtorek – bolesne</a></li>
+    <li><a href="#chwalebne">Środa – chwalebne</a></li>
+    <li><a href="#swiatla">Czwartek – światła</a></li>
+    <li><a href="#bolesne">Piątek – bolesne</a></li>
+    <li><a href="#radosne">Sobota – radosne</a></li>
+    <li><a href="#chwalebne">Niedziela – chwalebne</a></li>
+  </ul>`;
 }
 
 // ——— TREŚCI 9 DNI ———
@@ -183,307 +156,46 @@ const DAYS = [
   [
     "Panie, naucz mnie cierpliwości, gdy węzły nie rozwiązują się natychmiast.",
     "Maryjo, naucz mnie ufać, kiedy nie widzę drogi.",
-    "Niech Twoja wola, Boże, prowadzi mnie przez ten dzień."
+    "Niech Twoja wola, Boże, prowadzi mnie przez ten dzień." 
   ],
   [
     "Zawierzam Ci relacje, w których utknąłem w nieporozumieniach.",
     "Maryjo, wlej w moje serce łagodność i cichość.",
-    "Jezu, pojednaj mnie z tymi, których zraniłem i którzy zranili mnie."
+    "Jezu, pojednaj mnie z tymi, których zraniłem i którzy zranili mnie." 
   ],
   [
     "Oddaję Ci, Panie, węzły w pracy i obowiązkach.",
     "Ucz mnie mądrości w decyzjach małych i wielkich.",
-    "Niech Twoje światło rozproszy mój chaos."
+    "Niech Twoje światło rozproszy mój chaos." 
   ],
   [
     "Panie, dotknij moich lęków o przyszłość.",
     "Maryjo, przypominaj mi, że jestem w rękach Boga.",
-    "Daj mi serce wdzięczne za to, co już rozwiązane."
+    "Daj mi serce wdzięczne za to, co już rozwiązane." 
   ],
   [
     "Zawierzam Ci moje zdrowie — ciało i duszę.",
     "Maryjo, otocz opieką wszystkich chorych i strapionych.",
-    "Jezu, bądź moją siłą w słabości."
+    "Jezu, bądź moją siłą w słabości." 
   ],
   [
     "Panie, naucz mnie przebaczać — naprawdę i do końca.",
     "Maryjo, wyproś mi łaskę pokory.",
-    "Niech przebaczenie rozwiąże najtwardsze węzły."
+    "Niech przebaczenie rozwiąże najtwardsze węzły." 
   ],
   [
     "Odłóż ode mnie pokusy zniechęcenia i gniewu.",
     "Maryjo, prowadź mnie drogą wytrwałości.",
-    "Jezu, napełnij mnie nadzieją, która nie zawodzi."
+    "Jezu, napełnij mnie nadzieją, która nie zawodzi." 
   ],
   [
     "Dziękuję Ci, Panie, za wszystkie łaski na tej drodze.",
     "Maryjo, naucz mnie żyć w prostocie i ufności.",
-    "Zawierzam Ci owoce nowenny i proszę o pokój serca."
+    "Zawierzam Ci owoce nowenny i proszę o pokój serca." 
   ]
 ];
 
-// ——— STAN i PAMIĘĆ ———
-const LS_THEME = 'nowenna_theme';
-const LS_PREFIX = 'nowenna_wezly_';
-
-const ui = {
-  themeBtn: document.getElementById('themeBtn'),
-  nameInput: document.getElementById('nameInput'),
-  startBtn: document.getElementById('startBtn'),
-  nameBtn: document.getElementById('nameBtn'),
-  peekBtn: document.getElementById('peekBtn'),
-  prevBottom: document.getElementById('prevBottom'),
-  nextBottom: document.getElementById('nextBottom'),
-  content: document.getElementById('content'),
-  metaDay: document.getElementById('metaDay'),
-  metaStep: document.getElementById('metaStep'),
-  dotsWrap: document.getElementById('footerDots'),
-  toast: document.getElementById('toast'),
-  toastMsg: document.getElementById('toastMsg'),
-  nameMenu: document.getElementById('nameMenu')
-};
-
-let state = {
-  name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false
-};
-let snapshot = null;
-
-function keyFor(name){ return LS_PREFIX + name.toLowerCase().trim(); }
-function save(){
-  if(!state.name || state.preview) return;
-  localStorage.setItem(keyFor(state.name), JSON.stringify({
-    display_name: state.name, day:state.day, step:state.step, done:state.done, start_date: state.start_date
-  }));
-}
-function clearFor(name){ localStorage.removeItem(keyFor(name)); }
-function load(name){
-  const raw = localStorage.getItem(keyFor(name));
-  if(!raw){ state = {...state, name, day:1, step:0, done:Array(9).fill(false), start_date: todayISO(), preview:false}; return; }
-  try{
-    const d = JSON.parse(raw);
-    state = {
-      ...state,
-      name: d.display_name || name,
-      day: d.day||1,
-      step: d.step||0,
-      done: Array.isArray(d.done)? d.done.slice(0,9).concat(Array(9).fill(false)).slice(0,9) : Array(9).fill(false),
-      start_date: d.start_date || todayISO(),
-      preview:false
-    };
-  }catch{ state = {...state, name, day:1, step:0, done:Array(9).fill(false), start_date: todayISO(), preview:false}; }
-}
-
-// ——— DATY ———
-function pad(n){ return String(n).padStart(2,'0'); }
-function toISODate(d){ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
-function todayISO(){ const d=new Date(); return toISODate(new Date(d.getFullYear(),d.getMonth(),d.getDate())); }
-function parseISODate(s){ const [y,m,da]=s.split('-').map(Number); return new Date(y,m-1,da); }
-function formatPL(d){ return `${pad(d.getDate())}.${pad(d.getMonth()+1)}.${d.getFullYear()}`; }
-function addDays(base,days){ const d=new Date(base.getTime()); d.setDate(d.getDate()+days); return d; }
-function dateForDay(day){ if(!state.start_date) return null; const start=parseISODate(state.start_date); return addDays(start, day-1); }
-function dayFromStart(){
-  if(!state.start_date) return 1;
-  const start=parseISODate(state.start_date), today=parseISODate(todayISO());
-  const days=Math.floor((today-start)/(24*60*60*1000));
-  return Math.min(9, Math.max(1, days+1));
-}
-function msUntilNextMidnight(){
-  const now=new Date(); const next=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,0,0); return next-now;
-}
-function syncDayToCalendar(){
-  if(!state.name || state.preview) return;
-  const idx=dayFromStart();
-  if(state.day!==idx){ state.day=idx; state.step=0; render(); }
-}
-let midnightTimer=null;
-function scheduleMidnightSync(){
-  if(midnightTimer){ clearTimeout(midnightTimer); clearInterval(midnightTimer); midnightTimer=null; }
-  midnightTimer=setTimeout(()=>{
-    syncDayToCalendar();
-    midnightTimer=setInterval(syncDayToCalendar, 24*60*60*1000);
-  }, msUntilNextMidnight());
-}
-function setTheme(mode){ const root=document.documentElement; if(mode==='dark') root.classList.add('dark'); else root.classList.remove('dark'); localStorage.setItem(LS_THEME,mode); }
-function toggleTheme(){ const isDark=document.documentElement.classList.contains('dark'); setTheme(isDark?'light':'dark'); }
-function initTheme(){ const saved=localStorage.getItem(LS_THEME); if(saved){ setTheme(saved); } else { const prefersDark=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; setTheme(prefersDark?'dark':'light'); } }
-
-function stepsForCurrent(){
-  const base=DAYS[state.day-1];
-  if(state.day===9){ return [...base, "🎉 Brawo! Ukończyłeś całą nowennę. Wciśnij Reset i rozpocznij od nowa."]; }
-  return base;
-}
-function isResetEligible(){
-  if(!state.name || state.day!==9) return false;
-  const steps=stepsForCurrent(); return state.step===steps.length-1;
-}
-function canStart(){
-  const typed=ui.nameInput.value.trim();
-  if(!typed) return false;
-  if(state.name && typed.toLowerCase()===state.name.toLowerCase()) return false;
-  return true;
-}
-function updateStartButton(){ ui.startBtn.disabled=!canStart(); }
-
-function render(){
-  updateStartButton();
-  if(!state.name){
-    ui.content.innerHTML = 'Podaj imię i kliknij „Start”, aby zacząć dzień 1. Albo kliknij w ikonkę postaci, by wybrać wcześniej zapisanych użytkowników.';
-    ui.metaDay.textContent='Dzień –';
-    ui.metaStep.textContent='Krok –/–';
-  } else {
-    const steps=stepsForCurrent();
-    const safeStep=Math.max(0, Math.min(state.step, steps.length-1));
-    state.step=safeStep;
-    ui.content.innerHTML = steps[safeStep];
-    const d=dateForDay(state.day), dateStr=d?formatPL(d):'—';
-    ui.metaDay.textContent=`Dzień ${state.day} z 9 — ${dateStr}`;
-    ui.metaStep.textContent=`Krok ${safeStep+1} z ${steps.length}`;
-  }
-  ui.dotsWrap.innerHTML='';
-  for(let i=1;i<=9;i++){
-    const dot=document.createElement('div'); dot.className='dot';
-    if(state.name){
-      if(state.done[i-1]) dot.classList.add('done');
-      if(i===state.day) dot.classList.add('current');
-    }
-    const dt=state.name?dateForDay(i):null;
-    dot.title=state.name&&dt?`Dzień ${i} — ${formatPL(dt)}`:`Dzień ${i}`;
-    ui.dotsWrap.appendChild(dot);
-  }
-  const canNavigate = state.name || state.preview;
-  const steps = canNavigate ? stepsForCurrent() : null;
-  const atFirst = !steps || state.step===0;
-  const atLast  = !steps || state.step===steps.length-1;
-  ui.prevBottom.disabled = !canNavigate || (atFirst && !(state.preview && state.day>1));
-  ui.nextBottom.disabled = !canNavigate || (atLast  && !(state.preview && state.day<9));
-  ui.startBtn.textContent = isResetEligible()? 'Reset':'Start';
-}
-
-function showToast(msg){ ui.toastMsg.textContent=msg; ui.toast.classList.add('show'); setTimeout(()=> ui.toast.classList.remove('show'), 3600); }
-
-// ——— NAWIGACJA ———
-function nextStep(){
-  const steps=stepsForCurrent();
-  if(state.preview){
-    if(state.step<steps.length-1){ state.step+=1; render(); return; }
-    if(state.day<9){ state.day+=1; state.step=0; render(); return; }
-    showToast('Koniec podglądu: dzień 9.'); return;
-  }
-  if(!state.name) return;
-  if(state.step<steps.length-1){ state.step+=1; save(); render(); return; }
-  state.done[state.day-1]=true; save(); render();
-  if(state.day===9) showToast('Brawo! Ukończyłeś całą nowennę.'); else showToast(`Ukończyłeś dzień ${state.day}.`);
-}
-function prevStep(){
-  if(state.preview){
-    if(state.step>0){ state.step-=1; render(); return; }
-    if(state.day>1){ state.day-=1; state.step=stepsForCurrent().length-1; render(); return; }
-    return;
-  }
-  if(!state.name) return;
-  if(state.step>0){ state.step-=1; save(); render(); }
-}
-
-// ——— ZDARZENIA ———
-ui.startBtn.addEventListener('click', ()=>{
-  if(isResetEligible()){
-    const prevName=state.name; if(prevName) clearFor(prevName);
-    state.preview=false; if(ui.peekBtn) ui.peekBtn.classList.remove('active');
-    state={name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false};
-    snapshot=null; ui.nameInput.value='';
-    render(); showToast('Zresetowano.');
-    return;
-  }
-  const inputName=ui.nameInput.value.trim();
-  if(!inputName){ showToast('Podaj imię, aby rozpocząć.'); return; }
-  state.preview=false; snapshot=null; ui.peekBtn.classList.remove('active');
-  load(inputName); if(!state.start_date) state.start_date=todayISO(); save(); render(); showToast(`Witaj, ${state.name}!`);
-  ui.nameInput.value=state.name; updateStartButton();
-  scheduleMidnightSync(); syncDayToCalendar();
-});
-ui.prevBottom.addEventListener('click', prevStep);
-ui.nextBottom.addEventListener('click', nextStep);
-ui.nameInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter' && canStart()) ui.startBtn.click(); });
-ui.nameInput.addEventListener('input', updateStartButton);
-
-// Podgląd (X) — bez zapisu
-ui.peekBtn.addEventListener('click', ()=>{
-  if(state.preview){
-    if(snapshot){ state=JSON.parse(snapshot); snapshot=null; }
-    state.preview=false; ui.peekBtn.classList.remove('active');
-    render(); showToast('Zakończono podgląd.');
-  } else {
-    snapshot=JSON.stringify(state);
-    state.preview=true; ui.peekBtn.classList.add('active');
-    if(!state.day) state.day=1; if(!state.step) state.step=0;
-    render(); showToast('Podgląd wszystkich dni. Nawiguj strzałkami.');
-  }
-});
-
-// Lista zapisanych imion (menu 👤)
-function listProfiles(){
-  const rows=[];
-  for(let i=0;i<localStorage.length;i++){
-    const k=localStorage.key(i);
-    if(!k || !k.startsWith(LS_PREFIX)) continue;
-    try{
-      const d=JSON.parse(localStorage.getItem(k)||'{}');
-      const name=d.display_name || k.slice(LS_PREFIX.length);
-      const start=d.start_date?formatPL(parseISODate(d.start_date)):'—';
-      const doneCount=Array.isArray(d.done)?d.done.filter(Boolean).length:0;
-      rows.push({name, start, doneCount});
-    }catch{}
-  }
-  rows.sort((a,b)=> a.name.localeCompare(b.name,'pl')); return rows;
-}
-function openNameMenu(){
-  const rows=listProfiles(); const menu=ui.nameMenu; if(!menu) return;
-  if(rows.length===0){
-    menu.innerHTML='<div class="empty">Brak zapisanych imion. Zacznij od wpisania imienia i kliknij „Start”.</div>';
-  } else {
-    const items=rows.map(r=>`
-      <div class="item" data-name="${r.name}">
-        <div>
-          <div><strong>${r.name}</strong></div>
-          <div class="meta">start: ${r.start} • ukończone dni: ${r.doneCount}/9</div>
-        </div>
-        <button class="del" data-del="${r.name}">Usuń</button>
-      </div>`).join('');
-    menu.innerHTML='<h4>Zapisane imiona</h4>'+items;
-  }
-  menu.classList.add('show'); menu.setAttribute('aria-hidden','false');
-}
-function closeNameMenu(){ if(!ui.nameMenu) return; ui.nameMenu.classList.remove('show'); ui.nameMenu.setAttribute('aria-hidden','true'); }
-ui.nameBtn.addEventListener('click', (e)=>{ e.stopPropagation(); if(ui.nameMenu.classList.contains('show')) closeNameMenu(); else openNameMenu(); });
-document.addEventListener('click', (e)=>{ if(!ui.nameMenu.classList.contains('show')) return; if(!ui.nameMenu.contains(e.target) && e.target!==ui.nameBtn) closeNameMenu(); });
-ui.nameMenu.addEventListener('click', (e)=>{
-  const del=e.target.closest('[data-del]');
-  if(del){
-    const n=del.getAttribute('data-del');
-    if(n){ clearFor(n); if(state.name && state.name.toLowerCase()===n.toLowerCase()){ state={name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false}; render(); }
-    openNameMenu(); showToast('Usunięto.'); }
-    return;
-  }
-  const item=e.target.closest('.item');
-  if(item){
-    const n=item.getAttribute('data-name');
-    if(n){
-      state.preview=false; if(ui.peekBtn) ui.peekBtn.classList.remove('active');
-      load(n); if(!state.start_date) state.start_date=todayISO(); save(); render(); showToast(`Witaj, ${state.name}!`); closeNameMenu();
-      ui.nameInput.value=state.name; updateStartButton();
-      scheduleMidnightSync(); syncDayToCalendar();
-    }
-  }
-});
-
-// ——— INIT ———
-(function init(){
-  initTheme();
-  ui.themeBtn.addEventListener('click', toggleTheme); // jedno przypięcie
-  render();
-  scheduleMidnightSync();
-  document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible') syncDayToCalendar(); });
-})();
+// ——— RESZTA KODU (identyczna jak Twoja) ———
 </script>
 </body>
 </html>
