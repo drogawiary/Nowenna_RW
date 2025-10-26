@@ -490,8 +490,10 @@ function displayStepNumberForBaseStep(baseIdx){
 function isRosarySelectionStep(){
   const steps = stepsForCurrent();
   const cur = steps[state.step];
-  return !state.preview && !!state.name && !state.rosary && typeof cur === 'string' && cur.includes('data-rosary');
+  // Zablokuj Next na ekranie wyboru tajemnic także w podglądzie
+  return !!state.name && !state.rosary && typeof cur === 'string' && cur.includes('data-rosary');
 }
+
 
 function isResetEligible(){
   if(!state.name) return false;
