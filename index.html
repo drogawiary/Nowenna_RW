@@ -146,6 +146,12 @@ const ZAKONCZ_DZIEN_GENERIC = `
 <h3>Ukończyłeś ten dzień nowenny</h3>
 <p>Kliknij <em>Dalej</em>, aby wrócić do początku. Kolejny dzień otworzy się zgodnie z kalendarzem rozpoczęcia.</p>`;
 
+const ZAKONCZ_DZIEN_FINAL = `
+<h3>Ukończyłeś całą nowennę</h3>
+<p>Naciśnij <em>Dalej</em> lub <em>Reset</em>, aby zakończyć nowennę i powrócić do strony startowej.<br/>
+Niech Maryja prowadzi Cię dalej w codziennym życiu. 🌿</p>`;
+
+
 // --- Litania i modlitwa św. Bernarda (skrót) ---
 const LITANIA_LORETANSKA = `
 <h3>Litania Loretańska (skrót)</h3>
@@ -246,14 +252,15 @@ function buildDay(intencje, {finalInfo=false} = {}){
     PODZIEKOWANIE_MARYI
   ];
   if(finalInfo===true){
-    // specjalny ekran tylko dla Dnia 1 (z resetem)
     arr.push(ZAKONCZ_DZIEN_INFO);
   } else if(finalInfo==='generic'){
-    // zwykły ekran zakończenia dla dni 2–9
     arr.push(ZAKONCZ_DZIEN_GENERIC);
+  } else if(finalInfo==='final'){
+    arr.push(ZAKONCZ_DZIEN_FINAL);
   }
   return arr;
 }
+
 
 const DAYS = [
   // 1 — 4 modlitwy wstępne + intencja dnia
@@ -330,12 +337,13 @@ const DAYS = [
 
   // 9
   buildDay([
-    SEKWE,
-    SKLAD,
-    AKT_ZALU,
-    MODL_MARYJA,
-    'Dziękuję Ci, Panie, za wszystkie łaski na tej drodze.'
-  ], { finalInfo:'generic' })
+  SEKWE,
+  SKLAD,
+  AKT_ZALU,
+  MODL_MARYJA,
+  'Dziękuję Ci, Panie, za wszystkie łaski na tej drodze.'
+  ], { finalInfo:'final' })
+
 ];
 
 // --- UI refs i stan ---
@@ -490,9 +498,10 @@ function displayStepNumberForBaseStep(baseIdx){
 function isRosarySelectionStep(){
   const steps = stepsForCurrent();
   const cur = steps[state.step];
-  // Zablokuj Next na ekranie wyboru tajemnic także w podglądzie
-  return !!state.name && !state.rosary && typeof cur === 'string' && cur.includes('data-rosary');
+  // Blokuj Next na ekranie wyboru tajemnic: przy zalogowanym imieniu ORAZ w podglądzie
+  return (state.name || state.preview) && !state.rosary && typeof cur === 'string' && cur.includes('data-rosary');
 }
+
 
 
 function isResetEligible(){
@@ -637,10 +646,17 @@ for (let i = 1; i <= 9; i++) {
   let disableNext = !canNavigate || (atLast  && !(state.preview && state.day<9));
   if(isRosarySelectionStep()) disableNext = true;
 
-  // Wyjątek: ekran końcowy — zawsze aktywny Next (reset tylko dla Dnia 1 i poza podglądem)
-  if (state.name && stepsArr && (stepsArr[state.step] === ZAKONCZ_DZIEN_INFO || stepsArr[state.step] === ZAKONCZ_DZIEN_GENERIC)) {
-    disableNext = false;
-  }
+// Wyjątek: ekrany końcowe — zawsze aktywny Next
+if (
+  state.name && stepsArr && (
+    stepsArr[state.step] === ZAKONCZ_DZIEN_INFO ||
+    stepsArr[state.step] === ZAKONCZ_DZIEN_GENERIC ||
+    stepsArr[state.step] === ZAKONCZ_DZIEN_FINAL
+  )
+){
+  disableNext = false;
+}
+
 
   ui.prevBottom.disabled = disablePrev;
   ui.nextBottom.disabled = disableNext;
