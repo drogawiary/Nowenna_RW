@@ -444,10 +444,14 @@ function setTheme(mode){ const root = document.documentElement; if(mode === 'dar
 function toggleTheme(){ const isDark = document.documentElement.classList.contains('dark'); setTheme(isDark? 'light' : 'dark'); }
 function initTheme(){ const saved = localStorage.getItem(LS_THEME); if(saved){ setTheme(saved); } else { const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; setTheme(prefersDark? 'dark':'light'); } }
 
-function stepsForCurrent(){
-  // Zawsze zwracaj tylko bazową listę kroków z DAYS – bez dokładania "kroku 18"
-  return DAYS[state.day-1];
+function updateStartButton(){
+  if (isResetEligible()) {
+    ui.startBtn.disabled = false; // zawsze pozwól kliknąć Reset
+    return;
+  }
+  ui.startBtn.disabled = !canStart();
 }
+
 
 
 // — Pomocnicze: wykrycie różańca w danym dniu i łączna liczba kroków dnia
