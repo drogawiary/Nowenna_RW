@@ -452,6 +452,10 @@ function updateStartButton(){
   ui.startBtn.disabled = !canStart();
 }
 
+function stepsForCurrent(){
+  // Zawsze zwracaj tylko bazowe kroki z DAYS – bez dokładania "kroku 18"
+  return DAYS[state.day-1];
+}
 
 
 // — Pomocnicze: wykrycie różańca w danym dniu i łączna liczba kroków dnia
