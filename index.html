@@ -602,19 +602,29 @@ function render(){
     }
   }
 
-  // Dots
-  ui.dotsWrap.innerHTML = '';
-  for(let i=1;i<=9;i++){
-    const dot = document.createElement('div');
-    dot.className = 'dot';
-    if(state.name){
-      if(state.done[i-1]) dot.classList.add('done');
-      if(i===state.day) dot.classList.add('current');
-    }
-    const dt = state.name ? dateForDay(i) : null;
-    dot.title = state.name && dt ? `Dzień ${i} — ${formatPL(dt)}` : `Dzień ${i}`;
-    ui.dotsWrap.appendChild(dot);
+// Dots
+ui.dotsWrap.innerHTML = '';
+for (let i = 1; i <= 9; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'dot';
+
+  if (state.name || state.preview) {
+    // Wypełnione są wszystkie dni wcześniejsze niż bieżący
+    // oraz bieżący dzień, jeśli użytkownik już wszedł w kroki
+    const isDone =
+      !!(state.done[i - 1]) ||           // ukończone historycznie
+      i < state.day ||                   // wszystkie wcześniejsze dni
+      (i === state.day && (state.step > 0 || !!state.rosary)); // bieżący już rozpoczęty
+
+    if (isDone) dot.classList.add('done');
+    if (i === state.day) dot.classList.add('current');
   }
+
+  const dt = state.name ? dateForDay(i) : null;
+  dot.title = state.name && dt ? `Dzień ${i} — ${formatPL(dt)}` : `Dzień ${i}`;
+  ui.dotsWrap.appendChild(dot);
+}
+
 
   // Nawigacja
   const canNavigate = state.name || state.preview;
