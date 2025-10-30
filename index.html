@@ -182,7 +182,7 @@
       </div>
 
       <div class="footer" id="footerDots"></div>
-      <div class="hint">Postęp nowenny — dzień po dniu. ✦ © 2025 drogawiary@wp.pl</div>
+      <div class="hint">Postęp nowenny — dzień po dniu. ✝️ © 2025 drogawiary@wp.pl</div>
     </div>
   </div>
 
@@ -194,7 +194,9 @@
 // 🔒 Tryb testów (blokuje zapisy do localStorage w czasie selfTests)
 let TESTING = false;
 
-// --- Bloki treści używane codziennie ---
+/* ============================
+   BLOKI TREŚCI — pełna treść (stabilna)
+   ============================ */
 const SEKWE = `
 <h3>Sekwencja do Ducha Świętego</h3>
 <p>
@@ -239,7 +241,7 @@ już więcej nie grzeszyć i na przyszłość unikać okazji do grzechu. Amen.
 const MODL_MARYJA = `
 <h3>Modlitwa do Maryi Rozwiązującej Węzły</h3>
 <p>
-Matko Boża, która rozwiązujesz węzły,<br/>
+Matko Boża, która rozwiązujesz węzły,<nobr></nobr><br/>
 Ty wiesz, że moje życie jest pełne „węzłów”, które mnie dławią, przytłaczają i uciskają.<br/>
 Zawierzam się Tobie z ufnością, że je rozwiążesz,<br/>
 i przez Twe potężne wstawiennictwo Pan udzieli mi spokoju serca,<br/>
@@ -317,9 +319,7 @@ Duchu Święty, Boże — zmiłuj się nad nami.<br/>
 Święta Panno nad pannami — módl się za nami.<br/>
 Matko Chrystusowa — módl się za nami.<br/>
 Matko Kościoła — módl się za nami.<br/>
-Matko miłosierdzia — módl się za nami.<br/>
 Matko łaski Bożej — módl się za nami.<br/>
-Matko nadziei — módl się za nami.<br/>
 Matko nieskalana — módl się za nami.<br/>
 Matko najczystsza — módl się za nami.<br/>
 Matko dziewicza — módl się za nami.<br/>
@@ -352,7 +352,6 @@ Bramo niebieska — módl się za nami.<br/>
 Gwiazdo zaranna — módl się za nami.<br/>
 Uzdrowienie chorych — módl się za nami.<br/>
 Ucieczko grzesznych — módl się za nami.<br/>
-Pociecho migrantów — módl się za nami.<br/>
 Pocieszycielko strapionych — módl się za nami.<br/>
 Wspomożenie wiernych — módl się za nami.<br/><br/>
 
@@ -414,7 +413,27 @@ ale usłysz je łaskawie i wysłuchaj.<br/><br/>
 <strong>Amen.</strong>
 </p>`;
 
-// --- Tajemnice różańca ---
+const CLOSING_PRAYER = `
+<h3>Modlitwa do Maryi Rozwiązującej Węzły</h3>
+<p>
+O Maryjo, Matko Chrystusa i Kościoła, Królowo narodów i rodzin,<br/>
+Ty, która nosiłaś w swym łonie Syna Bożego, Tego, który złamał jarzmo,<br/>
+jakie trzymało nas w niewoli grzechu, wyproś nam łaskę pozostania<br/>
+w prawdziwej wolności dzieci Bożych.<br/><br/>
+
+Twoimi świętymi dłońmi, Najczystsza Dziewico, Królowo pokoju,<br/>
+rozwiąż splątane węzły, które sprawiają, że nasze życie<br/>
+jest smutne i skomplikowane.<br/><br/>
+
+Pomóż nam oddać się służbie dobru z czystością i prostotą serca,<br/>
+zawsze w gotowości do przebaczenia i pojednania.<br/>
+Spraw, abyśmy – nie stawiając niczego ponad miłość Chrystusa –<br/>
+w Jego miłości szczerze kochali naszych braci.<br/><br/>
+
+<strong>Amen.</strong>
+</p>`;
+
+// --- Tajemnice różańca (pełne z wersji stabilnej) ---
 const MYSTERIES = {
   radosne: {
     name: 'tajemnice radosne',
@@ -557,25 +576,19 @@ const DAILY_PRAYERS_BY_DAY = {
   Maryjo Rozwiązująca Węzły, módl się za mną.</p>`
 };
 
-const CLOSING_PRAYER = `
-<h3>Modlitwa do Maryi Rozwiązującej Węzły</h3>
-<p>
-O Maryjo, Matko Chrystusa i Kościoła, Królowo narodów i rodzin,<br/>
-Ty, która nosiłaś w swym łonie Syna Bożego, Tego, który złamał jarzmo,<br/>
-jakie trzymało nas w niewoli grzechu, wyproś nam łaskę pozostania<br/>
-w prawdziwej wolności dzieci Bożych.<br/><br/>
-
-Twoimi świętymi dłońmi, Najczystsza Dziewico, Królowo pokoju,<br/>
-rozwiąż splątane węzły, które sprawiają, że nasze życie<br/>
-jest smutne i skomplikowane.<br/><br/>
-
-Pomóż nam oddać się służbie dobru z czystością i prostotą serca,<br/>
-zawsze w gotowości do przebaczenia i pojednania.<br/>
-Spraw, abyśmy – nie stawiając niczego ponad miłość Chrystusa –<br/>
-w Jego miłości szczerze kochali naszych braci.<br/><br/>
-
-<strong>Amen.</strong>
-</p>`;
+/* ============================
+   [NOWE] — Ekran OPISU (krok pomocniczy)
+   ============================ */
+const INTRO_HTML = `
+<h3>Opis nowenny (krok 0)</h3>
+<p>Ten ekran to krótki wstęp. Kliknij <strong>„Dalej”</strong>, aby przejść do właściwego kroku 1.
+Możesz tu wpisać pełne wskazówki: jak się modlić, jak korzystać ze strony, jak zapisać intencję.</p>
+<ul>
+  <li>Struktura: modlitwy wstępne → <em>tajemnice różańca</em> (3 + modlitwa dnia + 2) → zakończenie dnia.</li>
+  <li>Wskazówki: cisza, skupienie, wybrana intencja (węzeł), stała pora.</li>
+  <li>Przycisk <strong>„⟵ Opis”</strong> na kroku 1 zawsze przywraca ten ekran.</li>
+</ul>
+`;
 
 function mysteriesLinksHTML(){
   return `
@@ -593,7 +606,7 @@ function mysteriesLinksHTML(){
   <p class='hint'>W środku używaj przycisków „Wstecz/Dalej”.</p>`;
 }
 
-// --- Kroki dzienne — SZABLON I PEŁNE 9 DNI ---
+// --- Kroki dzienne — SZABLON I PEŁNE 9 DNI (jak w stabilnej) ---
 function buildDay(intencje, {finalInfo=false} = {}){
   const arr = [
     ...intencje,
@@ -611,19 +624,18 @@ function buildDay(intencje, {finalInfo=false} = {}){
 }
 
 const DAYS = [
-  // 1 — 5 modlitw wstępnych (z intencją na pierwszym miejscu)
-buildDay([
-  '<h3>Dzień 1 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
-  SEKWE,
-  SKLAD,
-  AKT_ZALU,
-  MODL_MARYJA
-], { finalInfo:true }),
-
-
-  // 2 — 5 modlitw wstępnych (z intencją na pierwszym miejscu)
+  // 1
   buildDay([
-  '<h3>Dzień 2 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
+    '<h3>Dzień 1 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
+    SEKWE,
+    SKLAD,
+    AKT_ZALU,
+    MODL_MARYJA
+  ], { finalInfo:true }),
+
+  // 2
+  buildDay([
+    '<h3>Dzień 2 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
     SEKWE,
     SKLAD,
     AKT_ZALU,
@@ -632,7 +644,7 @@ buildDay([
 
   // 3
   buildDay([
-  '<h3>Dzień 3 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
+    '<h3>Dzień 3 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
     SEKWE,
     SKLAD,
     AKT_ZALU,
@@ -641,7 +653,7 @@ buildDay([
 
   // 4
   buildDay([
-  '<h3>Dzień 4 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
+    '<h3>Dzień 4 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
     SEKWE,
     SKLAD,
     AKT_ZALU,
@@ -650,7 +662,7 @@ buildDay([
 
   // 5
   buildDay([
-  '<h3>Dzień 5 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
+    '<h3>Dzień 5 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
     SKLAD,
     AKT_ZALU,
     MODL_MARYJA
@@ -658,7 +670,7 @@ buildDay([
 
   // 6
   buildDay([
-  '<h3>Dzień 6 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
+    '<h3>Dzień 6 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
     SEKWE,
     SKLAD,
     AKT_ZALU,
@@ -667,7 +679,7 @@ buildDay([
 
   // 7
   buildDay([
-  '<h3>Dzień 7 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
+    '<h3>Dzień 7 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
     SEKWE,
     SKLAD,
     AKT_ZALU,
@@ -676,7 +688,7 @@ buildDay([
 
   // 8
   buildDay([
-  '<h3>Dzień 8 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
+    '<h3>Dzień 8 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
     SKLAD,
     AKT_ZALU,
     MODL_MARYJA
@@ -684,7 +696,7 @@ buildDay([
 
   // 9
   buildDay([
-  '<h3>Dzień 9 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
+    '<h3>Dzień 9 nowenny</h3><p>✝️ W imię Ojca i Syna i Ducha Świętego. Amen.<br/>Powierzam Ci, Panie, wszystkie węzły mojego życia.</p><p class="wezel-info"><em>A w tej nowennie powierzam węzeł (…) </em></p>',
     SKLAD,
     AKT_ZALU,
     MODL_MARYJA
@@ -713,6 +725,7 @@ const ui = {
   nameMenu: document.getElementById('nameMenu')
 };
 
+// [NOWE] — intro:false w stanie
 let state = {
   name: '',
   day: 1,
@@ -722,7 +735,8 @@ let state = {
   preview: false,
   rosary: null,
   lastRosaryType: null,
-  fromRosaryExit: false
+  fromRosaryExit: false,
+  intro: false
 };
 let snapshot = null;
 
@@ -737,12 +751,13 @@ function save(){
     step:state.step,
     done:state.done,
     start_date: state.start_date
+    // intro celowo nie zapisujemy
   }));
 }
 function clearFor(name){ localStorage.removeItem(keyFor(name)); }
 function load(name){
   const raw = localStorage.getItem(keyFor(name));
-  if(!raw){ state = { ...state, name, day:1, step:0, done:Array(9).fill(false), start_date: todayISO(), preview:false, rosary:null }; return; }
+  if(!raw){ state = { ...state, name, day:1, step:0, done:Array(9).fill(false), start_date: todayISO(), preview:false, rosary:null, intro:false }; return; }
   try{
     const d = JSON.parse(raw);
     state = {
@@ -753,9 +768,10 @@ function load(name){
       done: Array.isArray(d.done)? d.done.slice(0,9).concat(Array(9).fill(false)).slice(0,9) : Array(9).fill(false),
       start_date: d.start_date || todayISO(),
       preview:false,
-      rosary:null
+      rosary:null,
+      intro:false
     };
-  }catch(e){ state = { ...state, name, day:1, step:0, done:Array(9).fill(false), start_date: todayISO(), preview:false, rosary:null }; }
+  }catch(e){ state = { ...state, name, day:1, step:0, done:Array(9).fill(false), start_date: todayISO(), preview:false, rosary:null, intro:false }; }
 }
 
 // --- Daty ---
@@ -921,7 +937,14 @@ function render(){
     ui.metaDay.textContent = 'Dzień –';
     ui.metaStep.textContent = 'Krok –/–';
   } else {
-    if(state.rosary){
+    if(state.intro){
+      // [NOWE] — ekran opisu
+      ui.content.innerHTML = INTRO_HTML;
+      const d = dateForDay(state.day);
+      const dateStr = d ? formatPL(d) : '—';
+      ui.metaDay.textContent = `Dzień ${state.day} z 9 — ${dateStr}`;
+      ui.metaStep.textContent = `Opis`;
+    } else if(state.rosary){
       ui.content.innerHTML = rosaryCurrentHTML();
       const d = dateForDay(state.day);
       const dateStr = d ? formatPL(d) : '—';
@@ -948,7 +971,7 @@ function render(){
       const isDone =
         !!(state.done[i - 1]) ||
         i < state.day ||
-        (i === state.day && (state.step > 0 || !!state.rosary));
+        (i === state.day && (state.step > 0 || !!state.rosary || state.intro));
       if (isDone) dot.classList.add('done');
       if (i === state.day) dot.classList.add('current');
     }
@@ -962,13 +985,14 @@ function render(){
   const stepsArr = canNavigate ? stepsForCurrent() : null;
   const atFirst = !stepsArr || state.step===0;
   const atLast  = !stepsArr || state.step===stepsArr.length-1;
-  const disablePrev = !canNavigate || (atFirst && !(state.preview && state.day>1));
+  const disablePrevBase = !canNavigate || (atFirst && !(state.preview && state.day>1));
+  let disablePrev = disablePrevBase;
   let disableNext = !canNavigate || (atLast  && !(state.preview && state.day<9));
 
-  // ❗Zawsze blokuj „Dalej” na ekranie wyboru tajemnic (także w podglądzie)
+  // blokada „Dalej” na ekranie linków różańca
   if(isRosarySelectionStep()) disableNext = true;
 
-  // Wyjątek: ekrany końcowe — zawsze aktywny Next
+  // Ekrany końcowe — Next aktywny
   if (
     state.name && stepsArr && (
       stepsArr[state.step] === ZAKONCZ_DZIEN_INFO ||
@@ -979,14 +1003,27 @@ function render(){
     disableNext = false;
   }
 
+  // [NOWE] — na kroku 1 pokaż „⟵ Opis” i włącz Wstecz
+  if (!state.preview && state.name && !state.intro && state.step === 0) {
+    disablePrev = false;
+    ui.prevBottom.textContent = '⟵ Opis';
+  } else {
+    ui.prevBottom.textContent = '⟵ Wstecz';
+  }
+
+  // W trybie opisu — „Dalej” zawsze dostępny (wychodzi do kroku 1)
+  if (state.intro) {
+    disableNext = false;
+  }
+
   ui.prevBottom.disabled = disablePrev;
   ui.nextBottom.disabled = disableNext;
 
   // Start/Reset
   ui.startBtn.textContent = isResetEligible() ? 'Reset' : 'Start';
 
-  // Linki różańca — podpinaj w normalnym trybie i w podglądzie
-  if(!state.rosary && (state.name || state.preview)){
+  // Linki różańca — podpinaj w normalnym trybie i w podglądzie (ale nie w opisie)
+  if(!state.rosary && (state.name || state.preview) && !state.intro){
     const s = stepsForCurrent();
     if(s[state.step] && s[state.step].includes('data-rosary')) bindRosaryLinks();
   }
@@ -1002,7 +1039,7 @@ function resetAll(){
     state.done[state.day-1] = true;
     save();
   }
-  state = { name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false, rosary:null, lastRosaryType:null, fromRosaryExit:false };
+  state = { name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false, rosary:null, lastRosaryType:null, fromRosaryExit:false, intro:false };
   snapshot = null;
   ui.nameInput.value = '';
   if(ui.peekBtn) ui.peekBtn.classList.remove('active');
@@ -1018,6 +1055,14 @@ function showToast(msg){
 
 // --- Nawigacja ---
 function nextStep(){
+  // [NOWE] — z OPISU wchodzimy do kroku 1
+  if (state.intro) {
+    state.intro = false;
+    state.step = 0;
+    render();
+    return;
+  }
+
   // Różaniec — wewnętrzna ścieżka
   if(state.rosary){
     const R = state.rosary;
@@ -1089,6 +1134,20 @@ function nextStep(){
 }
 
 function prevStep(){
+  // [NOWE] — na kroku 1 „Wstecz” otwiera OPIS
+  if (state.name && !state.preview && !state.intro && state.step === 0) {
+    state.intro = true;
+    render();
+    return;
+  }
+  // [NOWE] — będąc w OPISIE „Wstecz” wraca do kroku 1
+  if (state.intro) {
+    state.intro = false;
+    state.step = 0;
+    render();
+    return;
+  }
+
   if(state.rosary){
     const R = state.rosary;
     if(R.phase==='first3'){
@@ -1125,7 +1184,7 @@ ui.startBtn.addEventListener('click', ()=>{
   if(isResetEligible()){
     const prevName = state.name; if(prevName) clearFor(prevName);
     state.preview = false; if(ui.peekBtn) ui.peekBtn.classList.remove('active');
-    state = { name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false, rosary:null, lastRosaryType:null, fromRosaryExit:false };
+    state = { name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false, rosary:null, lastRosaryType:null, fromRosaryExit:false, intro:false };
     snapshot = null; ui.nameInput.value = '';
     render();
     return;
@@ -1133,6 +1192,7 @@ ui.startBtn.addEventListener('click', ()=>{
   const inputName = ui.nameInput.value.trim();
   if(!inputName){ return; }
   state.preview = false; snapshot = null; ui.peekBtn.classList.remove('active');
+  state.intro = false; // zawsze start z kroku 1
   load(inputName); if(!state.start_date) state.start_date = todayISO(); save(); render(); showToast(`Witaj, ${state.name}!`);
   ui.nameInput.value = state.name; updateStartButton();
   scheduleMidnightSync(); syncDayToCalendar();
@@ -1146,11 +1206,13 @@ ui.nameInput.addEventListener('input', updateStartButton);
 ui.peekBtn.addEventListener('click', ()=>{
   if(state.preview){
     if(snapshot){ state = JSON.parse(snapshot); snapshot = null; }
-    state.preview = false; ui.peekBtn.classList.remove('active');
+    state.preview = false; state.intro = false;
+    ui.peekBtn.classList.remove('active');
     render();
   } else {
     snapshot = JSON.stringify(state);
-    state.preview = true; ui.peekBtn.classList.add('active');
+    state.preview = true; state.intro = false;
+    ui.peekBtn.classList.add('active');
     if(!state.day) state.day = 1; if(!state.step) state.step = 0;
     render();
   }
@@ -1211,7 +1273,7 @@ ui.nameMenu.addEventListener('click', (e)=>{
     if(n){
       clearFor(n);
       if(state.name && state.name.toLowerCase()===n.toLowerCase()){
-        state = { name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false, rosary:null, lastRosaryType:null, fromRosaryExit:false };
+        state = { name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false, rosary:null, lastRosaryType:null, fromRosaryExit:false, intro:false };
         render();
       }
       openNameMenu();
@@ -1223,6 +1285,7 @@ ui.nameMenu.addEventListener('click', (e)=>{
     const n = item.getAttribute('data-name');
     if(n){
       state.preview=false; if(ui.peekBtn) ui.peekBtn.classList.remove('active');
+      state.intro=false;
       load(n); if(!state.start_date) state.start_date = todayISO(); save(); render(); showToast(`Witaj, ${state.name}!`); closeNameMenu();
       ui.nameInput.value = state.name; updateStartButton();
       scheduleMidnightSync(); syncDayToCalendar();
@@ -1260,15 +1323,19 @@ try{
     console.assert(typeof totalForDay()==='number', 'totalForDay number');
 
     // Sprawdź, że w PODGLĄDZIE też blokujemy "Dalej" na ekranie linków
-    state.name = 'Test'; state.preview = true; state.day = 1; state.step = rosaryLinkIndex() >=0 ? rosaryLinkIndex() : 1; state.rosary=null;
+    state.name = 'Test'; state.preview = true; state.day = 1; state.step = rosaryLinkIndex() >=0 ? rosaryLinkIndex() : 1; state.rosary=null; state.intro=false;
     render();
     console.assert(isRosarySelectionStep() === true, 'Preview: isRosarySelectionStep should be true');
     console.assert(ui.nextBottom.disabled === true, 'Preview: Next must be disabled on rosary selection');
 
+    // Test etykiety „Opis”
+    state.preview = false; state.step = 0; state.intro=false; render();
+    console.assert(ui.prevBottom.textContent.includes('Opis'), 'Prev label should be Opis on step 0');
+
     console.log('%cAll self-tests passed','color:green');
   }catch(err){ console.warn('Self-tests failed:', err); }
   try{ state = JSON.parse(backupState); }catch(_){
-    state = { name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false, rosary:null, lastRosaryType:null, fromRosaryExit:false };
+    state = { name:'', day:1, step:0, done:Array(9).fill(false), start_date:null, preview:false, rosary:null, lastRosaryType:null, fromRosaryExit:false, intro:false };
   }
   ui.nameInput.value = backupNameInput || '';
   if(backupPeekActive) ui.peekBtn.classList.add('active'); else ui.peekBtn.classList.remove('active');
@@ -1277,6 +1344,7 @@ try{
   state.preview = false;
   state.rosary = null;
   state.lastRosaryType = null;
+  state.intro = false;
   render();
 })();
 
