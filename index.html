@@ -179,17 +179,29 @@
 }
 
 .footer-bar button#peekBtn {
-  margin-top: 10px;
-  width: 36px;
-  height: 36px;
-  font-weight: 700;
+  margin-top: 20px;
+  padding: 0px 60px;       /* 🔹 zero góra/dół, szeroko po bokach */
+  line-height: 1;          /* 🔹 usuwa pionowy luz wokół tekstu */
+  height: 24px;            /* 🔹 ustawia konkretną wysokość przycisku */
+  font-size: 14px;
   background: #dbe5ff;
   color: #000033;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  font-weight: 700;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+  box-sizing: border-box;
+
   cursor: pointer;
   transition: 0.2s ease;
 }
+
+
 
 .footer-bar button#peekBtn:hover {
   background: #c5d5ff;
@@ -219,7 +231,6 @@
   z-index: 9999;
   max-width: 280px;
 }
-
 
 
 </style>
@@ -264,12 +275,11 @@
      style="color:inherit;text-decoration:none;font-weight:600;">
     Strona --> drogawiary@wp.pl
   </a>
-  <button id="peekBtn" class="btn square" title="Podgląd wszystkich dni (X)">(i)</button>
+  <button id="peekBtn" class="btn square" title="Podgląd wszystkich dni (X)">(demo-podgląd)</button>
 </footer>
+</div>
 
 
-
-  </div>
 
   <div class="toast" id="toast"><div id="toastMsg">—</div></div>
 
